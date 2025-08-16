@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            /* Changed background to ocean blue, pink, and purple */
+            background: linear-gradient(45deg, #1a7bb5, #ff69b4, #9370db);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 30px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 104px;
+            height: 160px;
+            border-radius: 100px 100px 0 0;
+            background: #ff3366;
+            box-shadow: 0 0 60px #ff3366;
+        }
+
+        .heart::before {
+            left: 100px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-in;
+            padding: 20px;
+        }
+
+        .date {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) translateY(0); opacity: 0; }
+            50% { transform: scale(1) translateY(-20px); opacity: 1; }
+            100% { transform: scale(0) translateY(-40px); opacity: 0; }
+        }
+
+        .corner-image-right {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 120px;
+            height: auto;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .corner-image-left {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 120px;
+            height: auto;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkles"></div>
+    <div class="heart"></div>
+
+    <div class="message">
+        <h1>✨ Gửi đến chị iu ✨<br> Niềm vui mỗi ngày của eim!</h1>
+        <p>Chúc chị luôn vui vẻ, hạnh phúc<br>và tràn đầy năng lượng tích cực! <br> Nữa nè 😜😜😜<br> Chúc chị mãi iu bé hong phai, chúc chị iu bé suốt đời, chúc chị cả đời không dứt được bé ;3( ̶Y̶a̶h̶-̶a̶h̶h̶h̶h̶ ̶s̶ế̶n̶ ̶q̶u̶á̶ ̶đ̶i̶ ̶c̶á̶i̶ ̶đ̶ồ̶ ̶đ̶á̶n̶g̶ ̶g̶h̶é̶c̶ ̶)😊💓😘</p>
+    </div>
+    <div class="date">16-08-2004</div>
+    <div class="date">Chúc mừng sinh nhật chị 🎁💋💗</div>
+
+
+    <!-- Corner images -->
+    <img src="https://i.pinimg.com/736x/2f/79/9c/2f799ca629aecd95b01a22715672b251.jpg" alt="For u" class="corner-image-right">
+    <img src="https://i.pinimg.com/736x/c1/61/9f/c1619fd4f3df0f3c5022fa43cb088734.jpg" alt="For u" class="corner-image-left">
+
+    <script>
+        // Create sparkles function
+        function createSparkles() {
+            const sparklesContainer = document.querySelector('.sparkles');
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            // Random position
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            
+            sparklesContainer.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }
+
+        // Create new sparkles periodically
+        setInterval(createSparkles, 200);
+    </script>
+</body>
+</html>
